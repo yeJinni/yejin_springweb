@@ -15,7 +15,16 @@
 		http://www.springframework.org/schema/jee/spring-jee.xsd">
 
 	<mvc:annotation-driven />
-	<context:component-scan base-package="org.sol" />
+	<context:component-scan base-package="org.yejin" />
+
+	<!-- 
+		<mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/member/**" />
+				<bean class="org.yejin.book.chap13.AuthCheckInterceptor" />
+			</mvc:interceptor>
+		</mvc:interceptors>
+	 -->
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

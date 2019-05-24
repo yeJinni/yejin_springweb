@@ -11,12 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.yejin.book.chap11.Member;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 @Controller
 public class ArticleController {
 
 	@Autowired
 	ArticleDao articleDao;
+	
+	Logger logger = LogManager.getLogger();
 
 	/**
 	 * 글 목록
@@ -55,8 +60,7 @@ public class ArticleController {
 		Object memberObj = session.getAttribute("MEMBER");
 		if (memberObj == null)
 			// 세션에 MEMBER가 없으면 로그인 화면으로
-			return "redirect:/app/loginForm";
-
+			return "./login/loginForm";
 		// 글쓰기 화면으로
 		return "article/addForm";
 	}
@@ -70,7 +74,7 @@ public class ArticleController {
 		Object memberObj = session.getAttribute("MEMBER");
 		if (memberObj == null)
 			// 세션에 MEMBER가 없으면 로그인 화면으로
-			return "redirect:/loginForm";
+			return "./login/loginForm";
 
 		// 아이디와 이름을 세션의 값으로 사용
 		Member member = (Member) memberObj;

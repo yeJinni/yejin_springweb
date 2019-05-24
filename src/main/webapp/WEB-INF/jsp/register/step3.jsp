@@ -1,7 +1,5 @@
 <!doctype html>
-<!--
-p.284 [리스트 11.13] 회원가입 성공 화면
--->
+<!-- p.284 [리스트 11.13] 회원가입 성공 화면 -->
 <html>
 <head>
 <base href="${pageContext.request.contextPath }/" />
