@@ -11,18 +11,19 @@
 	<p>
 		<a href="./app/article/list">글 목록</a>
 	</p>
-	<form action="./app/article/add" method="post">
-		<p>제목 :</p>
-		<p>
-			<input type="text" name="title" maxlength="100" style="width: 100%;" required>
+	
+		<p>글번호 :
+		<span>${article.articleId }</span> | <span style="font-weight: bold;">${article.title}</span>
 		</p>
-		<p>내용 :</p>
-		<p>
-			<textarea name="content" style="width: 100%; height: 200px;" required></textarea>
+		<p>날짜 :
+		<span>${article.cdate}</span> | <span>${article.name}</span>
 		</p>
+		<hr />
+		<p>${article.contentHtml}</p>
+		<hr />
 		<p>
-			<button type="submit">등록</button>
+			<a href="./app/article/editForm?articleId=${article.articleId}">수정하기</a>
+			<a href="./app/article/delete?articleId=${article.articleId}">삭제하기</a>
 		</p>
-	</form>
 </body>
 </html>

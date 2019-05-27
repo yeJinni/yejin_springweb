@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.yejin.book.chap11.Member;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.dao.DuplicateKeyException;
 
 
 @Controller
@@ -56,11 +58,13 @@ public class ArticleController {
 	 */
 	@GetMapping("/article/addForm")
 	public String articleAddForm(HttpSession session) {
-		// 세션에 MEMBER가 있는 지 확인
+		/** // 세션에 MEMBER가 있는 지 확인
 		Object memberObj = session.getAttribute("MEMBER");
 		if (memberObj == null)
 			// 세션에 MEMBER가 없으면 로그인 화면으로
 			return "./login/loginForm";
+			*/
+		
 		// 글쓰기 화면으로
 		return "article/addForm";
 	}
@@ -69,18 +73,62 @@ public class ArticleController {
 	 * 글 등록
 	 */
 	@PostMapping("/article/add")
-	public String articleAdd(Article article, HttpSession session) {
-		// 세션에 MEMBER가 있는 지 확인
+	public String articleAdd(Article article, @SessionAttribute("MEMBER")Member member) {
+		/** // 세션에 MEMBER가 있는 지 확인
 		Object memberObj = session.getAttribute("MEMBER");
 		if (memberObj == null)
 			// 세션에 MEMBER가 없으면 로그인 화면으로
 			return "./login/loginForm";
+		*/
 
 		// 아이디와 이름을 세션의 값으로 사용
-		Member member = (Member) memberObj;
+		//Member member = (Member) memberObj;
+		
 		article.setUserId(member.getMemberId());
 		article.setName(member.getName());
 		articleDao.addArticle(article);
 		return "redirect:/app/article/list";
 	}
+	
+	/**
+	 * 글 수정 화면
+	 */
+	@GetMapping("/article/editForm")
+	public String editForm(@RequestParam(value="articleId") String articleId, @SessionAttribute("MEMBER") Member member, Model model) {
+		Article article = articleDao.getArticle(articleId);
+		
+		if(!member.getMemberId().equals(article.getUserId()))
+			return "redirect:/app/article/view?articleId="+articleId;
+		model.addAttribute("article",article);
+		// 글 수정 화면으로
+		return "article/editForm";
+	}
+	
+	/**
+	 * 글 수정
+	 */
+	@PostMapping("/article/edit")
+	public String revise(Article article,
+			@RequestParam(value="articleId") String articleId,
+			@SessionAttribute("MEMBER") Member member)
+	{
+		try {
+			articleDao.editArticle(article);
+			return "redirect:/app/article/view?articleId="+articleId;
+		} catch (DuplicateKeyException e) {
+			return "redirect:/app/article/list";
+		}
+	}
+	@GetMapping("/article/delete")
+	public String delete(
+			@RequestParam(value="articleId") String articleId,
+			@SessionAttribute("MEMBER") Member member)
+	{
+		Article article = articleDao.getArticle(articleId);
+		if(!member.getMemberId().equals(article.getUserId()))
+			return "redirect:/app/article/view?articleId="+articleId;
+		articleDao.deleteArticle(articleId);
+		return "redirect:/app/article/list";
+}
+	
 }

@@ -4,7 +4,7 @@ package org.yejin.book.chap11;
  * p.60 [리스트 3.3] Member 클래스 수정<br>
  * 회원정보 도메인 오브젝트. 회원 테이블과 매핑한다.
  * 
- * @author Jacob
+ * @author Yejin
  */
 public class Member {
 	String memberId; // 아이디

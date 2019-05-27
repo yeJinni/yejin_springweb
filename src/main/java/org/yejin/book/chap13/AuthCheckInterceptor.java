@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 /**
  * p.373 [리스트 13.22] AuthCheckInterceptor 수정
  * 
- * @author Jacob
+ * @author Yejin
  */
 public class AuthCheckInterceptor implements HandlerInterceptor {
 

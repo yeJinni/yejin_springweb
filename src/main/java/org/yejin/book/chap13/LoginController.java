@@ -17,7 +17,7 @@ import org.yejin.book.chap11.MemberDao;
 /**
  * p.356 [리스트 13.6] 로그인 컨트롤러 수정
  * 
- * @author Jacob
+ * @author Yejin
  */
 @Controller
 public class LoginController {
