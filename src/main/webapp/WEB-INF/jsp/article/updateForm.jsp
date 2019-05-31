@@ -11,15 +11,20 @@
 	<p>
 		<a href="./app/article/list">글 목록</a>
 	</p>
-	<form action="./app/article/edit?articleId=${article.articleId}" method="post">
+	<form action="./app/article/update" method="post">
 		<p>
-			제목 : <input type="text" name="title" value="${article.title}">
+			제목 : <input type="text" name="title" value="${article.title}" maxlength="100"
+style="width: 100%;" required>
 		</p>
 		<p>
 			내용 :
 			<textarea name="content" style="width: 100%; height: 200px;" required>${article.content}</textarea>
 		</p>
-			<button type="submit">등록</button>
-		</form>
+		<p>
+			<button type="submit">등123록</button>
+			<button type="button" onclick="history.back();">취소</button>
+		</p>
+		<input type="hidden" name="articleId" value="${article.articleId }"/>
+	</form>
 </body>
 </html>

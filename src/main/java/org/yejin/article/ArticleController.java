@@ -93,32 +93,40 @@ public class ArticleController {
 	/**
 	 * 글 수정 화면
 	 */
-	@GetMapping("/article/editForm")
-	public String editForm(@RequestParam(value="articleId") String articleId, @SessionAttribute("MEMBER") Member member, Model model) {
+	@GetMapping("/article/updateForm")
+	public String updateForm(@RequestParam(value="articleId") String articleId,
+								@SessionAttribute("MEMBER") Member member, Model model) {
 		Article article = articleDao.getArticle(articleId);
 		
+		//권한 체크: 세션의 멤버아이디와 글의 유저아이디를 비교
 		if(!member.getMemberId().equals(article.getUserId()))
 			return "redirect:/app/article/view?articleId="+articleId;
 		model.addAttribute("article",article);
+		
 		// 글 수정 화면으로
-		return "article/editForm";
+		return "article/updateForm";
 	}
 	
 	/**
 	 * 글 수정
 	 */
-	@PostMapping("/article/edit")
+	@PostMapping("/article/update")
 	public String revise(Article article,
-			@RequestParam(value="articleId") String articleId,
-			@SessionAttribute("MEMBER") Member member)
-	{
-		try {
-			articleDao.editArticle(article);
-			return "redirect:/app/article/view?articleId="+articleId;
-		} catch (DuplicateKeyException e) {
-			return "redirect:/app/article/list";
-		}
+			@SessionAttribute("MEMBER") Member member) {
+		article.setUserId(member.getMemberId());
+		int updatedRows = articleDao.updateArticle(article);
+
+		// 권한 체크 : 글이 수정되었는지 확인
+		if (updatedRows == 0)
+			// 글이 수정되지 않음. 자신이 쓴 글이 아님
+			throw new RuntimeException("No Authority!");
+
+		return "redirect:/app/article/view?articleId=" + article.getArticleId();
 	}
+	
+	/**
+	 * 글 삭제
+	 */
 	@GetMapping("/article/delete")
 	public String delete(
 			@RequestParam(value="articleId") String articleId,
@@ -127,7 +135,7 @@ public class ArticleController {
 		Article article = articleDao.getArticle(articleId);
 		if(!member.getMemberId().equals(article.getUserId()))
 			return "redirect:/app/article/view?articleId="+articleId;
-		articleDao.deleteArticle(articleId);
+		articleDao.deleteArticle(articleId, member.getMemberId());
 		return "redirect:/app/article/list";
 }
 	
