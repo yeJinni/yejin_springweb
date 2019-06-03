@@ -60,7 +60,7 @@ public class LetterController {
 	 * 편지쓰기 화면
 	 */
 	@GetMapping("/letter/writeLetter")
-	public String letterwriteLetter(HttpSession session) {
+	public String letterWriteLetter(HttpSession session) {
 		/** // 세션에 MEMBER가 있는 지 확인
 		Object memberObj = session.getAttribute("MEMBER");
 		if (memberObj == null)
