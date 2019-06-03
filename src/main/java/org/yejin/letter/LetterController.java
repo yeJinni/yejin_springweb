@@ -38,16 +38,16 @@ public class LetterController {
 		int offset = (page - 1) * COUNT;
 
 		List<Letter> letterReceive = letterDao.receiveletters(offset, COUNT);
-		int totalCount = letterDao.getArticlesCount();
+		int totalCount = letterDao.getLettersCount();
 		model.addAttribute("totalCount", totalCount);
-		model.addAttribute("articleList", articleList);
+		model.addAttribute("letterReceive", letterReceive);
 	}
 	
 	/**
-	 * 보 목록
+	 * 보낸 목록
 	 */
-	@GetMapping("/article/send")
-	public void articleList(
+	@GetMapping("/letter/send")
+	public void letterSend(
 			@RequestParam(value = "page", defaultValue = "1") int page,
 			Model model) {
 
@@ -55,10 +55,10 @@ public class LetterController {
 		final int COUNT = 100;
 		int offset = (page - 1) * COUNT;
 
-		List<Article> articleList = articleDao.listArticles(offset, COUNT);
-		int totalCount = articleDao.getArticlesCount();
+		List<Letter> letterSend = letterDao.sendletters(offset, COUNT);
+		int totalCount = letterDao.getLettersCount();
 		model.addAttribute("totalCount", totalCount);
-		model.addAttribute("articleList", articleList);
+		model.addAttribute("letterSend", letterSend);
 	}
 	
 }

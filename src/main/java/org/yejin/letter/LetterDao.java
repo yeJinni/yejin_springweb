@@ -11,10 +11,13 @@ import org.yejin.letter.Letter;
 
 @Repository
 public class LetterDao {
+	
 	//받은
 	static final String RECEIVE_LETTERS = "select letterId, title, content, senderId, senderName, left(cdate,16) cdate from letter where letterId=? and receiverId=?";
 	//보낸
 	static final String SEND_LETTERS = "select letterId, title, content, receiverId, receiverName, left(cdate,16) cdate from letter where letterId=? and senderId=?";
+	//목록 건수
+	static final String COUNT_LETTERS = "select count(articleId) from article";	
 	//읽기
 	static final String GET_LETTERS = "select letterId, title, content, senderId, senderName, left(cdate,16) cdate, udate from letter where letterId=?";
 	//추가(쓰기)
@@ -43,6 +46,13 @@ public class LetterDao {
 		return jdbcTemplate.query(SEND_LETTERS, letterRowMapper, offset,
 				count);
 	}
+	
+	/**
+	 * 목록 건수
+	 */
+	public int getLettersCount() {
+		return jdbcTemplate.queryForObject(COUNT_LETTERS, Integer.class);
+}
 	
 	/**
 	 * 편지 읽기
