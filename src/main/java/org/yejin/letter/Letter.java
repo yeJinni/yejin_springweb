@@ -1,18 +1,18 @@
 package org.yejin.letter;
 
 public class Letter {
-		int letterId;
+		String letterId;
 		String title;
 		String content;
-		int senderId;
-		int receiverId;
+		String senderId;
+		String receiverId;
 		String senderName;
 		String receiverName;
 		String cdate;
-		public int getLetterId() {
+		public String getLetterId() {
 			return letterId;
 		}
-		public void setLetterId(int letterId) {
+		public void setLetterId(String letterId) {
 			this.letterId = letterId;
 		}
 		public String getTitle() {
@@ -27,10 +27,10 @@ public class Letter {
 		public void setContent(String content) {
 			this.content = content;
 		}
-		public int getSenderId() {
+		public String getSenderId() {
 			return senderId;
 		}
-		public void setSenderId(int senderId) {
+		public void setSenderId(String senderId) {
 			this.senderId = senderId;
 		}
 		public String getSenderName() {
@@ -39,10 +39,10 @@ public class Letter {
 		public void setSenderName(String senderName) {
 			this.senderName = senderName;
 		}
-		public int getReceiverId() {
+		public String getReceiverId() {
 			return receiverId;
 		}
-		public void setReceiverId(int receiverId) {
+		public void setReceiverId(String receiverId) {
 			this.receiverId = receiverId;
 		}
 		public String getReceiverName() {

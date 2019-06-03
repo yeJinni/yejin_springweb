@@ -24,6 +24,7 @@ th {
 		<thead>
 			<tr>
 				<th>제목</th>
+				<th>받는이</th>
 				<th>전송날짜</th>
 				
 			</tr>

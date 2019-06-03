@@ -8,9 +8,9 @@
 <body>
 	<h2>편지 쓰기</h2>
 	<p>
-		<a href="./app/article/list">명단 목록</a>
+		<a href="./app/members">명단 목록</a>
 	</p>
-	<form action="./app/letter/add" method="post">
+	<form action="./app/letter/write" method="post">
 		<p>제목 :</p>
 		<p>
 			<input type="text" name="title" maxlength="100" style="width: 100%;" required>
