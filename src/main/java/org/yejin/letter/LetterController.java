@@ -10,20 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.yejin.article.Article;
-import org.yejin.article.ArticleDao;
 import org.yejin.book.chap11.Member;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.dao.DuplicateKeyException;
 
+@Controller
 public class LetterController {
 
 	@Autowired
 	LetterDao letterDao;
 	
-	Logger logger = LogManager.getLogger();
 	
 	/**
 	 * 받은 목록
@@ -60,5 +55,22 @@ public class LetterController {
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("letterSend", letterSend);
 	}
+	
+	/**
+	 * 편지쓰기 화면
+	 */
+	@GetMapping("/letter/writeLetter")
+	public String letterwriteLetter(HttpSession session) {
+		/** // 세션에 MEMBER가 있는 지 확인
+		Object memberObj = session.getAttribute("MEMBER");
+		if (memberObj == null)
+			// 세션에 MEMBER가 없으면 로그인 화면으로
+			return "./login/loginForm";
+			*/
+		
+		// 글쓰기 화면으로
+		return "letter/writeLetter";
+	}
+
 	
 }

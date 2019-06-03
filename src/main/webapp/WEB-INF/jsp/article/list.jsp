@@ -31,7 +31,7 @@ th {
 		<input type="number" name="page" value="${param.page }" placeholder="페이지"
 			min="1" max="${totalCount / 100 + 1 }" step="1" style="width: 50px;">
 		<button type="submit">조회</button>
-		<a href="./app/article/writeLetter">편지쓰기</a>
+		
 	</form>
 	<table>
 		<thead>
@@ -40,8 +40,7 @@ th {
 				<th>제목</th>
 				<th>등록자</th>
 				<th>등록일시</th>
-				<th>보낸편지</th>
-				<th>받은편지</th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -51,8 +50,7 @@ th {
 					<td><a href="./app/article/view?articleId=${article.articleId }">${article.title }</a></td>
 					<td>${article.name }</td>
 					<td>${article.cdate }</td>
-					<td><a href="./app/article/send">보낸편지</a></td>
-					<td><a href="./app/article/receive">받은편지</a></td>
+					
 				</tr>
 			</c:forEach>
 		</tbody>

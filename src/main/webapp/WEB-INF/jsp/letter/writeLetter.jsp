@@ -15,6 +15,10 @@
 		<p>
 			<input type="text" name="title" maxlength="100" style="width: 100%;" required>
 		</p>
+		<p>받는 사람 :</p>
+		<p>
+			<span>${member.email }</span>
+		</p>
 		<p>내용 :</p>
 		<p>
 			<textarea name="content" style="width: 100%; height: 200px;" required></textarea>
