@@ -23,7 +23,7 @@ public class LetterDao {
 	static final String COUNT_LETTERS_SEND = "select count(letterId) from letter where senderId=?";	
 		
 	//읽기
-	static final String GET_LETTERS = "select letterId, title, content, senderId, senderName, left(cdate,16) receiverId, receiverName, left(cdate, 16) cdate from letter where letterId=? and (sendreId=? or receiverId=?)";
+	static final String GET_LETTERS = "select letterId, title, content, senderId, senderName, receiverId, receiverName, left(cdate, 16) cdate from letter where letterId=? and (senderId=? or receiverId=?)";
 	//추가(쓰기)
 	static final String ADD_LETTERS = "insert letter(title, content, senderId, senderName, receiverId, receiverName) values(?,?,?,?,?,?)";
 	//삭제

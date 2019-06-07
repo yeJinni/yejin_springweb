@@ -16,18 +16,29 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/header.jsp"%>
 	<h2>편지 보기</h2>
-	
-		<p>글번호 :
-		<span>${letter.letterId }</span> | <span style="font-weight: bold;">${letter.title}</span>
-		</p>
-		<p>날짜 :
-		<span>${letter.cdate}</span> | <span>${letter.name}</span>
-		</p>
-		<hr />
+	<p>
+		<c:choose>
+			<c:when test="${param.mode == 'SENT' }">
+				<a href="./app/letter/send">목록</a>
+			</c:when>
+			<c:otherwise>
+				<a href="./app/letter/receive">목록</a>
+			</c:otherwise>
+		</c:choose>
+		<a href="./app/letter/delete?letterId=${letter.letterId }&mode=${param.mode}"
+			onclick="return confirmDelete();">삭제</a>
+	</p>
+	<hr />
+	<p>
+		<span style="font-weight: bold;">${letter.title }</span>
+	</p>
+	<p>
+		보낸이 :	<span>${letter.senderId }</span> | <span>${letter.senderName }</span><br />
+		받는이 : <span>${letter.receiverId }</span>:<span>${letter.receiverName }</span><br />
+		날짜 :	<span>${letter.cdate}</span>
+	</p>
+	<hr />
 		<p>${letter.contentHtml}</p>
-		<hr />
-		
-		
-		
+		<hr />		
 </body>
 </html>

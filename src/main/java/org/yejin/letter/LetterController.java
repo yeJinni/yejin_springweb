@@ -68,21 +68,7 @@ public class LetterController {
 		model.addAttribute("letter", letter);
 	}
 	
-	/**
-	 * 편지 쓰기 화면
-	 */
-	@GetMapping("/letter/writeLetter")
-	public String letterWriteLetter(HttpSession session) {
-		/** // 세션에 MEMBER가 있는 지 확인
-		Object memberObj = session.getAttribute("MEMBER");
-		if (memberObj == null)
-			// 세션에 MEMBER가 없으면 로그인 화면으로
-			return "./login/loginForm";
-			*/
-		
-		// 글쓰기 화면으로
-		return "letter/writeLetter";
-	}
+
 	
 	/**
 	 * 편지 쓰기

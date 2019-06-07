@@ -3,21 +3,19 @@
 <html>
 <head>
 <base href="${pageContext.request.contextPath }/" />
-<title>게시판</title>
+<title>편지 쓰기</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/jsp/header.jsp"%>
 	<h2>편지 쓰기</h2>
-	<p>
-		<a href="./app/members">명단 목록</a>
-	</p>
 	<form action="./app/letter/write" method="post">
 		<p>제목 :</p>
 		<p>
 			<input type="text" name="title" maxlength="100" style="width: 100%;" required>
 		</p>
-		<p>받는 사람 :</p>
-		<p>
-			<span>${member.email }</span>
+		<p>받는 사람  <input type="text" name="receiverId" value="${param.receiverId }"
+						readonly /> | <input type="text" name="receiverName"
+						value="${param.receiverName }" readonly />
 		</p>
 		<p>내용 :</p>
 		<p>
