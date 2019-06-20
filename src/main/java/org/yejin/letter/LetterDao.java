@@ -70,7 +70,7 @@ public class LetterDao {
 	 */
 	public Letter getLetters(String letterId, String memberId) {
 		return jdbcTemplate.queryForObject(GET_LETTERS, letterRowMapper,
-				letterId, memberId);
+				letterId, memberId, memberId);
 	}
 
 	/**

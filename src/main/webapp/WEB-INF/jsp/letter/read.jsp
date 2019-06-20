@@ -2,15 +2,15 @@
 <!doctype html>
 <html>
 <head>
-<base href="${pageContext.request.contextPath }/" />
+<base href="${pageContext.request.contextPath}/" />
 <title>게시판</title>
 <script type="text/javascript">
-		function confirmDelete() {
-			if (confirm("삭제하시겠습니까?"))
-				return true;
-			else
-				return false;
-		}
+	function confirmDelete() {
+		if (confirm("삭제하시겠습니까?"))
+			return true;
+		else
+			return false;
+	}
 </script>
 </head>
 <body>
@@ -30,15 +30,15 @@
 	</p>
 	<hr />
 	<p>
-		<span style="font-weight: bold;">${letter.title }</span>
+		<span style="font-weight: bold;">${letter.title}</span>
 	</p>
 	<p>
-		보낸이 :	<span>${letter.senderId }</span> | <span>${letter.senderName }</span><br />
-		받는이 : <span>${letter.receiverId }</span>:<span>${letter.receiverName }</span><br />
-		날짜 :	<span>${letter.cdate}</span>
+		보낸이 : <span>${letter.senderId}</span>:<span>${letter.senderName}</span><br />
+		받는이 : <span>${letter.receiverId}</span>:<span>${letter.receiverName}</span><br />
+		보낸시간 : <span>${letter.cdate}</span>
 	</p>
 	<hr />
-		<p>${letter.contentHtml}</p>
-		<hr />		
+	<p>${letter.contentHtml}</p>
+	<hr />
 </body>
 </html>
